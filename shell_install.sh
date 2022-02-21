@@ -10,10 +10,13 @@ while true; do
 	if [[ $os_type == "mac" ]]
 	then
 		installer="brew"
+		font_dir="~/Library/Fonts"
 		break
 	elif [[ $os_type == "linux" ]]
 	then
 		installer="apt"
+		mkdir ~/.fonts
+		font_dir="~/.fonts"
 		break
 	else
 		echo "Please choose a valid OS"
@@ -50,14 +53,19 @@ eval "sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/mast
 /bin/bash ./copy_dotfiles.sh
 
 # install oh-my-zsh plugins
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 env -i git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
 env -i git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 env -i  git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 
 # install vim plugins
 vim +PluginInstall +qall
-vim +call mkdp#util#install()
+vim +call +mkdp#util#install()
 
-
-
-
+eval "cd $font_dir  && {
+	curl -O https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+	curl -O https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+	curl -O https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+	curl -O https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+	cd -;
+	}"
