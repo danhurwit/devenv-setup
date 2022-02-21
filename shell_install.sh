@@ -60,7 +60,6 @@ env -i  git clone https://github.com/zsh-users/zsh-history-substring-search ${ZS
 
 # install vim plugins
 vim +PluginInstall +qall
-vim +call +mkdp#util#install()
 
 eval "cd $font_dir  && {
 	curl -O https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf

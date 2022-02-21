@@ -7,6 +7,7 @@ The scripts assume the existence of several things:
 * [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ### Scripts
+Run `chmod + x {script_name}` on all scripts before running.<br>   
 `shell_install.sh` is useful for first time env setup  
 `copy_dotfiles.sh` copies the dotfiles out of the dotfiles directory to the user home directory  
 `update_dotfile.sh` copies a specific file based on path to the dotfiles directory. It will replace existing files. 
